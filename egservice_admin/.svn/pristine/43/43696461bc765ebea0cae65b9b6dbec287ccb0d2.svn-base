@@ -1,0 +1,10 @@
+$(function(){
+	$("#searchBtn").on('click', function(){
+		//console.log(1)
+		$("#hiddenTable").attr('style', 'display');
+		
+		$("#hiddenChart1").attr('style', 'display');
+		
+		$("#hiddenChart2").attr('style', 'display');
+	})
+});

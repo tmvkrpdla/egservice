@@ -1,0 +1,30 @@
+$(function(){
+	$("#popStdWriteFormBtn").on('click', function(){
+		if(document.getElementsByName('popStdWriteFrom').length != 0){
+			$("#popStdWriteFrom").remove();
+		}
+		
+		var form = document.createElement("form"); 
+		form.setAttribute("id", "popStdWriteFrom") 
+		form.setAttribute("name", "popStdWriteFrom") 
+		form.setAttribute("charset", "UTF-8"); 
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "./elecPopStdWrite");
+		document.body.appendChild(form); 
+		
+		var _popStdWriteFrom = document.popStdWriteFrom;
+		
+		var _outerWidth = window.outerWidth * 0.95;
+		var _outerHeight = window.outerHeight * 0.98;
+		
+		window.open("", 'popStdWriteFrom', 'height='+_outerHeight+', width='+_outerWidth + ', left=20, top=10, scrollbars=1');
+		_popStdWriteFrom.target = 'popStdWriteFrom';
+		_popStdWriteFrom.submit();
+		
+	});
+	
+	
+	$("#popStdDelBtn").on('click', function(){
+		alert('popStdDelBtn')
+	});
+});

@@ -1,0 +1,41 @@
+$(function(){
+	
+	//	추가 버튼
+	$("#popStdWriteFormBtn").on('click', function(){
+		if(document.getElementsByName('popStdWriteFrom').length != 0){
+			$("#popStdWriteFrom").remove();
+		}
+		
+		var form = document.createElement("form"); 
+		form.setAttribute("id", "popStdWriteFrom") 
+		form.setAttribute("name", "popStdWriteFrom") 
+		form.setAttribute("charset", "UTF-8"); 
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "./elecPopStdWrite");
+		document.body.appendChild(form); 
+		
+		var _popStdWriteFrom = document.popStdWriteFrom;
+		
+		var _outerWidth = '1280px';//window.outerWidth * 0.95;
+		var _outerHeight = '900px' //window.outerHeight * 0.98;
+		
+		window.open("", 'popStdWriteFrom', 'height='+_outerHeight+', width='+_outerWidth + ', left=20, top=10, scrollbars=1');
+		_popStdWriteFrom.target = 'popStdWriteFrom';
+		_popStdWriteFrom.submit();
+		
+	});
+	
+	//	삭제 버튼
+	$("#popStdDelBtn").on('click', function(){
+		alert('popStdDelBtn')
+	});
+	
+	//	선택 버튼
+	$("#popStdChoiceBtn").on('click', function(){
+		//	절감 기준에 데이터 집어넣기
+		opener.window._setStdItem('111')
+		
+		//	현재 창 닫기
+		window.close();
+	});
+});

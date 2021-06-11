@@ -1,0 +1,252 @@
+//	절감 기준에 데이터를 넣어줌.
+function _setStdItem(obj){
+	$("#seq_save_ref").val(obj.seq_save_ref);
+	$("#save_ref_name").val(obj.save_ref_name);
+	$("#refName").val(obj.save_ref_name);
+	
+	//	절감 기준 선택 데이터를 받으면 + 버튼 활성화
+	$("#addPlanBtn").removeClass('addPlanBtnReadonly');
+	$("#addPlanBtn").addClass('btn');
+	$("#addPlanBtn").addClass('btn-outline-primary');
+	
+	//	절감계획 시행 버튼 활성화
+	$("#planRefBtn").removeClass('planRefBtnReadonly');
+	$("#planRefBtn").addClass('btn');
+	$("#planRefBtn").addClass('btn-outline-danger');
+	
+	var _result = enernet.modules.api.setSavePlanNameAndRef($("#seq_save_plan").val(), $("#planName").val(), $("#seq_save_ref").val());
+	//$("#planName").attr('disabled', true);
+	//$("#planName").addClass('electReadonly');
+	//console.log(_result);
+}
+
+$(function(){
+	$("#planName").focus();
+	
+	//	절감계획 시행 버튼
+	$("#planRefBtn").on('click', function(){
+	
+		if($("#planRefBtn").hasClass('planRefBtnReadonly')){
+			return;
+		} 
+		
+		if($('.delTrEvt').length == 0){
+			return alert('절감 목표 목록을 등록 해주시기 바랍니다');
+		}
+		
+		var _site = $("#seq_site").val();
+		var _plan = $("#seq_save_plan").val();
+		
+		var _res = enernet.modules.api.setActiveSavePlan(_site, _plan);
+		if(_res.result_code == 1){
+			
+			alert('저장에 성공하였습니다');
+			
+			location.href = '../bld/elecPlanWrite';
+			
+		}else{
+			alert('저장에 실패하였습니다');
+		}
+	});
+	
+	
+	//	절감 기준 선택 버튼
+	$("#popStdListBtn").click(function(){
+		var _planName = $("#planName").val();
+		if(_planName.trim() == ''){
+			return alert('절감 계획 명칭을 작성 해주시기 바랍니다');
+		}
+		
+		
+		$("#seq_save_ref").val('');
+		$("#save_ref_name").val('');
+		$("#refName").val('');
+
+		if(document.getElementsByName('popForm').length != 0){
+			$("#popForm").remove();
+		}
+		
+		var form = document.createElement("form"); 
+		form.setAttribute("id", "popForm") 
+		form.setAttribute("name", "popForm") 
+		form.setAttribute("charset", "UTF-8"); 
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "./elecPopStdList");
+		document.body.appendChild(form); 
+		
+		var _popForm = document.popForm;
+		
+		var _outerWidth = window.outerWidth * 0.95;
+		var _outerHeight = window.outerHeight * 0.8;
+		
+		window.open("", 'popForm', 'height='+_outerHeight+', width='+_outerWidth + ', left=20, top=10, scrollbars=1');
+		_popForm.target = 'popForm';
+		_popForm.submit();
+		
+	
+		
+	});
+	
+	
+	
+	//	_evt[0].children[0].outerText
+	
+	$("#addPlanBtn").on('click', function(){
+		
+		if($("#addPlanBtn").hasClass('addPlanBtnReadonly')){
+			return ;
+		}
+		
+		var _seqSaveRef = $("#seq_save_ref").val();
+		if(_seqSaveRef == ''){
+			return alert('절감 기준을 선택 해주시기 바랍니다');
+		}
+		
+		if($("#hourFrom").val() > $("#hourTo").val()){
+			return alert('절감 시작 시간은 절감 종료 시간보다 작아야합니다');
+		}
+		
+		var _seqSavePlan = $("#seq_save_plan").val();
+		var _seqMeter = $("#seqMeter").find('option:selected').attr('data-id');
+		var _descr =  $("#seqMeter").val();
+		
+		var _hourFrom = $("#hourFrom").val();
+		var _hourTo = $("#hourTo").val();
+		var _percentToSave= $("#percentToSave").val();
+		
+		var _res = enernet.modules.api.addSavePlanElem(_seqSavePlan, _seqMeter, _hourFrom, _hourTo, _percentToSave);
+		if(_res.result_code == 2){
+			return alert(_res.result_name);
+		}
+		
+		getData();
+			
+			
+	});
+	
+	function getData(){
+		$('div.wrap-loading').removeClass('display-none');
+		
+		try{
+			
+			var _seqSavePlan = $("#seq_save_plan").val();
+			
+			
+	
+			removeData();
+			
+			//////	절감목표 목록 테이블
+			var _result = enernet.modules.api.getSavePlanInfo(_seqSavePlan);
+			
+			
+			
+			var _list_plan_elem = _result.save_plan_info.list_plan_elem;
+			
+			for(var i=0; i<_list_plan_elem.length; i ++){
+				
+				
+				var _tag = "<tr class='delTrEvt'>";
+				_tag += "<td>" + _list_plan_elem[i].meter_descr + '(' + _list_plan_elem[i].seq_meter +')'
+						+ "<input type='hidden' class='delTdHidden' value=" + _list_plan_elem[i].seq_plan_elem + ">";
+						+"</td>";
+				_tag += "<td>" + _list_plan_elem[i].hour_from + '시' + ' ~ ' + _list_plan_elem[i].hour_to + '시'  +"</td>";
+				_tag += "<td>" + _list_plan_elem[i].percent_to_save+'%' +"</td>";
+				_tag += "<td>" + _list_plan_elem[i].save_kwh.toFixed(2) +"</td>";
+				_tag += "<td>" + _list_plan_elem[i].save_won.toFixed(2) +"</td>";
+				_tag += "<td>";
+				_tag += "<input type=button class='btn btn-outline-success btn-sm delTrBtn' value='삭제'>";
+				_tag += "</td>";
+				_tag += "</tr>";
+				
+				
+				$('#planTable').append(_tag);
+			}
+					
+			
+			//	삭제 이벤트 추가
+			addEvt();
+			
+			//////	절감예상요약
+			var _kwh = _result.save_plan_info.save_kwh_total_from_elem.toFixed(2)
+			var _won = _result.save_plan_info.save_won_total_from_elem.toFixed(2)
+			$("#save_kwh_total_from_elem").text(_kwh);
+			$("#save_won_total_from_elem").text(_won);
+			$("#save_kwh_month").text(_kwh*23);
+			$("#save_won_month").text(_won*23);
+			
+			//////	계측기별 절감 예상
+			var _list_meter = _result.save_plan_info.list_meter;
+			var _meterTrTag = "";
+			for(var i=0; i< _list_meter.length; i++){
+				
+				var _listMeter = _list_meter[i]; 
+				_meterTrTag+= "<tr class='delMeterTr'>";
+				_meterTrTag+= "<td>"+ _listMeter.meter_descr + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_kwh_all.toFixed(2) + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_kwh_1.toFixed(2) + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_kwh_2.toFixed(2) + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_kwh_3.toFixed(2) + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_won_all.toFixed(2) + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_won_1.toFixed(2) + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_won_2.toFixed(2) + "</td>";
+				_meterTrTag+= "<td>"+ _listMeter.save_won_3.toFixed(2) + "</td>";
+				_meterTrTag+= "</tr>"
+				
+			}
+			_meterTrTag+= "<tr class='delMeterTr'>";
+			_meterTrTag+= "<td>"+ '전체 계측기' + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_kwh_for_all_meter_all.toFixed(2) + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_kwh_for_all_meter_1.toFixed(2) + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_kwh_for_all_meter_2.toFixed(2) + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_kwh_for_all_meter_3.toFixed(2) + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_won_for_all_meter_all.toFixed(2) + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_won_for_all_meter_1.toFixed(2) + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_won_for_all_meter_2.toFixed(2) + "</td>";
+			_meterTrTag+= "<td>"+ _result.save_plan_info.save_won_for_all_meter_3.toFixed(2) + "</td>";
+			_meterTrTag+= "</tr>";
+			
+	        //console.log(_meterTrTag)
+			$("#meter_plan").append(_meterTrTag);
+			
+			
+		}catch(e){
+			console.log('error');
+			console.log(e)
+		}finally{
+			$('.wrap-loading').addClass('display-none');
+		}
+			
+	}
+	
+		
+	function addEvt(){
+		var _evt = document.getElementsByClassName('delTrBtn');
+		for(var i=0; i<_evt.length; i++){
+			_evt[i].onclick = function(){
+				
+				$(this).parents('tr.delTrEvt').remove()
+				var _elem = $(this).parents('tr.delTrEvt').find('.delTdHidden').val();
+				enernet.modules.api.deleteSavePlanElem(_elem);
+				getData();
+			}
+		}
+		
+	};
+	
+	//
+	function removeData(){
+		//	절감 목표 목록 삭제
+		$('.delTrEvt').remove();
+		
+		//	절감예상요약
+		$("#save_kwh_total_from_elem").text('-');
+		$("#save_won_total_from_elem").text('-');
+		$("#save_kwh_month").text('-');
+		$("#save_won_month").text('-');
+		
+		//	계측기별 절감 예상 삭제
+		$('.delMeterTr').remove();
+		
+	}
+	
+});

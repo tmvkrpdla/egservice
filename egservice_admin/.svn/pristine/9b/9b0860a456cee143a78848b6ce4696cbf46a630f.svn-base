@@ -1,0 +1,30 @@
+/* 부트 스트랩 토글*/
+/*	small size*/
+.btn-sm.btn-default {
+	color: #333;
+	background-color: #e6e6e6;
+	border-color: #adadad;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.btn-sm.toggle-off {
+	left: 30px;
+}
+
+.btn-sm.toggle-on.btn {
+	font-size: 12px;
+	padding-right: 0px;
+	cursor: pointer;
+}
+
+.btn-sm.toggle-on {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 70%;
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+}

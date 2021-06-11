@@ -1,0 +1,72 @@
+//	절감 기준에 데이터를 넣어줌.
+function _setStdItem(obj){
+	console.log(obj)
+	$('input.elecInputWidth80').val(obj);
+}
+
+$(function(){
+	
+	
+	
+	$("#popStdListBtn").click(function(){
+		
+
+		if(document.getElementsByName('popForm').length != 0){
+			$("#popForm").remove();
+		}
+		
+		var form = document.createElement("form"); 
+		form.setAttribute("id", "popForm") 
+		form.setAttribute("name", "popForm") 
+		form.setAttribute("charset", "UTF-8"); 
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "./elecPopStdList");
+		document.body.appendChild(form); 
+		
+		var _popForm = document.popForm;
+		
+		var _outerWidth = window.outerWidth * 0.95;
+		var _outerHeight = window.outerHeight * 0.8;
+		
+		window.open("", 'popForm', 'height='+_outerHeight+', width='+_outerWidth + ', left=20, top=10, scrollbars=1');
+		_popForm.target = 'popForm';
+		_popForm.submit();
+		
+	});
+	
+	
+	var count = 0;
+	//	_evt[0].children[0].outerText
+	
+	$("#addPlanBtn").on('click', function(){
+		
+		var _tag = "<tr class='delTrEvt'>";
+		_tag += "<td>" + (++count) +"</td>";
+		_tag += "<td>" + (++count) +"</td>";
+		_tag += "<td>" + (++count) +"</td>";
+		_tag += "<td>" + (++count) +"</td>";
+		_tag += "<td>" + (++count) +"</td>";
+		_tag += "<td>";
+		_tag += "<input type=button class='btn btn-outline-success btn-sm delTrBtn' value='삭제'>";
+		_tag += "</td>";
+		_tag += "</tr>";
+		
+		$('#planTable').append(_tag);
+		
+	
+		addEvt();
+		
+	});
+	
+		
+	function addEvt(){
+		var _evt = document.getElementsByClassName('delTrBtn');
+		for(var i=0; i<_evt.length; i++){
+			_evt[i].onclick = function(){
+				$(this).parents('tr.delTrEvt').remove()
+			}
+		}
+		
+	};
+	
+});

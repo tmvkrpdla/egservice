@@ -1,0 +1,157 @@
+package egservice.co.kr.admin.apt.controller;
+
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import egservice.co.kr.admin.common.Api;
+import egservice.co.kr.admin.common.PageUtil;
+import egservice.co.kr.admin.common.SessionUtil;
+
+@Controller
+@RequestMapping("/apt")
+public class AptNtcController {
+
+	private final Logger logger = LoggerFactory.getLogger(AptNtcController.class);
+	
+	@RequestMapping("/noticeList")
+	public String noticeList(HttpSession session, Model model,
+			@RequestParam(value="mainMenu", defaultValue="notice")String mainMenu,
+			@RequestParam(value="nowPage", defaultValue="1")int nowPage) throws Exception{
+		
+		String moveUrl = "redirect:../";
+		
+		//logger.info("call	:	/apt/noticeList");
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+			
+			if("3".equals(team_type)) {	//	아파트
+				
+				
+				String targetType = "1";
+				
+				HashMap<String, Object> totalMap = Api.getNoticeCount(targetType);
+				int count_notice_total = (Integer)totalMap.get("count_notice_total");
+
+				PageUtil pageUtil = new PageUtil(nowPage, count_notice_total, 10);
+				
+				
+				HashMap<String, Object> noticeData = Api.getNoticeListForPaging("1", targetType , pageUtil.getStartNum(), pageUtil.getEndNum());//(seq_admin, timeCreatedMax, 1000000);
+				
+				List notice_list = (List) noticeData.get("notice_list");
+				
+				
+				moveUrl = "apt/noticeList";
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("NOTICE_LIST", notice_list);
+				model.addAttribute("PAGEUTIL", pageUtil);
+				model.addAttribute("nowPage", nowPage);
+			}
+			
+		}
+		
+		return moveUrl;
+		
+	}
+	
+	
+	@RequestMapping("/noticeWrite")
+	public String noticeWrite(HttpSession session, Model model,
+			@RequestParam(value="mainMenu", defaultValue="notice")String mainMenu,
+			@RequestParam(value="nowPage") int nowPage) throws Exception{
+		String moveUrl = "redirect:../";
+		
+		//logger.info("call	:	/apt/noticeWrite");
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+			
+			if("3".equals(team_type)) {	//	아파트
+				
+				moveUrl = "apt/noticeWrite";
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("nowPage", nowPage);
+
+			}
+			
+		}
+		
+		return moveUrl;
+	}	
+	
+	@RequestMapping("/noticeView")
+	public String noticeView(HttpSession session, Model model,
+			@RequestParam(value="mainMenu", defaultValue="notice") String mainMenu,
+			@RequestParam(value="nowPage")int nowPage,
+			@RequestParam HashMap paramMap
+			)throws Exception{
+		
+		String moveUrl = "redirect:../";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			if(! (paramMap.isEmpty()) ) {
+				
+				String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+				
+				if("3".equals(team_type)) {	//	아파트
+				
+					
+					
+					moveUrl = "apt/noticeView";
+					model.addAttribute("NOTICE", paramMap);
+					model.addAttribute("mainMenu", mainMenu);
+					model.addAttribute("nowPage", nowPage);
+				}
+			}
+		}
+		
+		return moveUrl;
+	}
+	
+	
+	@RequestMapping("/noticeMod")
+	public String noticeMod (HttpSession session, Model model,
+			@RequestParam(value="mainMenu", defaultValue="notice") String mainMenu,
+			@RequestParam(value="nowPage")int nowPage,
+			@RequestParam HashMap paramMap
+			)throws Exception{
+		
+		String moveUrl = "redirect:../";
+		
+		
+		if (!SessionUtil.isNull(session, "ADMIN")) {
+
+			if (!(paramMap.isEmpty())) {
+
+				String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+				if ("3".equals(team_type)) { // 아파트
+
+					// EgApi egapi = new EgApi();
+					//logger.info("call	:	/apt/noticeMod");
+					//logger.info(paramMap.toString());
+
+					moveUrl = "apt/noticeMod";
+					model.addAttribute("NOTICE", paramMap);
+					model.addAttribute("mainMenu", mainMenu);
+					model.addAttribute("nowPage", nowPage);
+				}
+			}
+		}
+		return moveUrl;
+	}
+}

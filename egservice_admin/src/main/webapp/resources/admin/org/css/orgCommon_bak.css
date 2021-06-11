@@ -1,0 +1,840 @@
+@import url(../../common/fonts/NanumGothic/NanumGothic.css);
+@import url(../../common/fonts/NanumSquare/NanumSquare.css);
+
+html, body{
+	width: 100%;
+	height : 100%;
+}
+
+.mainOuter{
+	width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.mainWrapper {
+	
+	border: 3px solid #aaa;
+    border-radius: 15px;
+    background: linear-gradient(315deg, rgb(237, 237, 237), rgb(251, 251, 251));
+    font-family: "Nanum Gothic";
+    width: 98%;
+    padding: 15px;
+    height: 95%;
+    margin: auto;
+}
+
+.timeFormDiv{
+	width : 100%;
+	height: 34px;
+	background: #3a6499;
+	padding : 8px;
+}
+
+#timeform {
+	width: 100%;
+    color: #fff;
+    font-weight: 600;
+   
+}
+
+.timeFormLeft{
+	width: 50%;
+    float: left;
+}
+
+.timeFormRight{
+	width: 50%;
+    float: right;
+    text-align: right;
+}
+
+
+#title1 {
+	border: none;
+	background: none;
+	font-size: 10pt;
+	width: 49%;
+}
+
+#title2 {
+	border: none;
+	background: none;
+	font-size: 10pt;
+	width: 49%;
+}
+
+#time {
+	width: 215px;
+	border: none;
+	background: none;
+	font-size: 10pt;
+}
+
+
+#logout {
+	width: 80px;
+	border: none;
+	background: none;
+	font-size: 10pt;
+}
+
+
+.subWrapper {
+	width: 100%;
+	/* height: 85%; */
+	height: calc(100% - 34px);
+	border: 2px solid rgb(48, 93, 131);
+	background-color: rgb(48, 93, 131);
+	display: flex;
+	flex-direction: row;
+}
+
+/* home box 좌우	*/
+.firstBox {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.toInnerDiv_1 {
+	margin: auto;
+	width: 100%;
+	/* height: 40%; */
+	height : 305.17px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	padding-top: 5px;
+}
+
+.toInnerDiv_2 {
+	margin: auto;
+	width: 100%;
+	height: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	padding: 10px;
+}
+
+.UsageInfoA_2 {
+	width: 49%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+}
+
+.homeTextTitle {
+	/* color: white; */
+	font-size: 20px;
+	margin-bottom: 13px;
+	/* border: 2px solid black; */
+	text-align: center;
+	background-color: #FFF35C;
+	border-radius: 15px;
+	font-weight: 600;
+}
+
+.usage {
+	border-top-right-radius: 27px;
+	border-bottom-right-radius: 27px;
+	margin-bottom: 3%;
+	border: none;
+	display: flex;
+	flex-direction: row;
+	padding: 0.5%;
+	justify-content: flex-end;
+	height: 25%;
+}
+
+div.right2 {
+	border-radius: 20px;
+	border: 4px;
+	width: 75%;;
+	margin: 4px;
+	height: 80%;
+	padding: 0.8%;
+	display: flex;
+	align-content: center;
+	flex-direction: column;
+	justify-content: center;
+	color: white;
+	font-size: 16px;
+	text-align: right;
+}
+
+.left {
+	display: flex;
+	flex-direction: column;
+	width: 35%;
+	margin: auto;
+}
+
+.left span {
+	font-size: 15px;
+	color: white;
+	padding-left: 15px;
+}
+
+#text1 {
+	text-align: right;
+	padding-right: 15px;
+}
+
+#text2 {
+	text-align: right;
+	padding-right: 15px;
+}
+
+#text3 {
+	text-align: right;
+	padding-right: 15px;
+}
+
+.topLeft {
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+	display: table;
+	height: 100%;
+}
+
+.topLeft span {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+	padding-left: 15px;
+	font-size: 16px;
+	color: white;
+}
+
+.topRight {
+	border-radius: 20px;
+	border: 4px;
+	width: 25%;
+	margin: 4px;
+	height: 80%;
+	padding: 0.8%;
+	display: flex;
+	align-content: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#text5 {
+	text-align: center;
+}
+
+#text7 {
+	text-align: center;
+}
+
+#text9 {
+	text-align: center;
+}
+
+#text11 {
+	text-align: center;
+}
+
+#text13 {
+	text-align: center;
+}
+
+#text15 {
+	text-align: center;
+}
+
+.dashboardTable {
+	width: 98%;
+	height: 98%;
+	margin: auto;
+	font-size: 15px;
+}
+
+.dashboardTableTitle {
+	text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+	
+}
+
+.dashboardTable tr{
+	border : 1px solid gainsboro
+}
+
+.dashboardTable td{
+	border : 1px solid gainsboro	
+}
+
+.dashboardEvtTr:hover {
+	cursor: pointer;
+}
+
+.siteType2 {
+	background: pink;
+}
+
+.siteType1 {
+	background: cornsilk;
+}
+
+.dashboardTdNum{
+	text-align: center;
+}
+
+/* .dashboardTdNum {
+	display: table;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.dashboardTdNum span {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+	padding-left: 15px;
+	font-size: 18px;
+	color: white;
+} */
+
+.dashboardTdRight{
+	text-align: right;
+    padding-right: 15px;
+}
+
+.dashboardTdSiteName{
+	padding-left: 15px;
+}
+
+
+
+.dashboardDayUsage {
+	border: none;
+	border-radius: 6px;
+	color: white;
+	font-size: 10pt;
+	background-color: rgb(214, 79, 165);
+	/* width: 100px; */
+	height: 25px;
+}
+
+.dashboardCompare {
+	border: none;
+	border-radius: 6px;
+	color: white;
+	font-size: 10pt;
+	background-color: rgb(84, 165, 153);
+	/* width: 100px; */
+	height: 25px;
+}
+
+.dashboardGas {
+	border: none;
+	border-radius: 6px;
+	color: white;
+	font-size: 10pt;
+	background-color: rgb(246, 118, 25);
+	width: 100px;
+	height: 25px;
+}
+
+/**/
+.toInnerDiv_3 {
+	margin: auto;
+	width: 100%;
+	height: 30%;
+	display: flex;
+	/* flex-direction: row; */
+	/* justify-content: center; */
+	/* align-content: center; */
+	padding: 10px;
+}
+
+.divContent3 {
+	height: 100%;
+	border-radius: 15px;
+	background-color: white;
+	width: 98%;
+}
+
+.divContent3TitleDiv {
+	height: 10%;
+	width: 100%;
+}
+
+.homeLeftBotTitleOuter {
+	width: 100%;
+	height: 100%;
+}
+
+.homeLeftBotTitleInner {
+	margin-top: auto;
+	background: none;
+	border: none;
+	font-size: 18px;
+	font-weight: 600;
+	text-align: center;
+	color: rgb(48, 93, 131);
+	text-decoration: underline;
+	height: 100%;
+	width: 100%;
+}
+
+.divContent3TableDiv {
+	height: 90%;
+	width: 100%;
+	overflow: scroll;
+	padding: 3px;
+}
+
+.homeMapDivOuter {
+	width: 100%;
+    height: 100%;
+    /* background-color: white; */
+    border-radius: 15px;
+    /* align-content: center; */
+    padding: 8px;
+}
+
+.homeMapDivInner{
+	width: 100%;
+    height: 100%;
+    background: white;
+    padding: 8px;
+    border-radius: 15px;
+}
+
+.map {
+	height: 100%;
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+}
+
+/**/
+.toInnerDiv_3_ch {
+	width: 100%;
+	height: 100%;
+	background-color: #47ACB4;
+	border: none;
+	border-radius: 10px;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	display: flex;
+	flex-direction: column;
+	align-content: flex-start;
+	justify-content: center;
+	padding-top: 5px;
+}
+
+.homeInfo {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	padding: 10px;
+	background-color: gainsboro;	
+}
+
+.homeInfoTable {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border-radius: 15px;
+	border-top: 1px solid gainsboro;
+	border-collapse: collapse;
+}
+
+.toInnerDiv_4 {
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	padding-top: 5px;
+	padding-right: 5px;
+}
+
+.toInnerDiv_5 {
+	margin: auto;
+	width: 100%;
+	/* height: 60%; */
+	height : calc(100% - 305.17px);
+	display: flex;
+	padding: 8px;
+}
+
+.homeTable {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	border-radius: 15px;
+	border-top: 1px solid gainsboro;
+	border-collapse: collapse;
+}
+
+.homeTableDiv {
+	padding: 20px;
+	width: 100%;
+	height: 100%;
+	background-color: gainsboro;
+	border-radius: 15px;
+}
+
+.homeTable th {
+	border-bottom: 1px solid gainsboro;
+}
+
+.homeTable td {
+	border-bottom: 1px solid gainsboro;
+}
+
+.homeTdTitle {
+	font-weight: bold;
+	text-align: center;
+	font-size: 15px;
+	background-color: cornsilk;
+	border-right: 1px solid gainsboro;
+}
+
+.homeTdContents {
+	padding-left: 25px;
+}
+
+.bldAdmin {
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+	background-color: gainsboro;
+	border-radius: 15px;
+}
+
+.bldAdminTitle {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+	overflow: scroll;
+}
+
+.bldAdminTable {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.bldAdminTableTitleTr {
+	background-color: antiquewhite;
+	font-size: 20;
+	font-weight: bold;
+}
+
+.bldAdminTableDiv {
+	width: 100%;
+	height: 100%;
+}
+
+.bldAdminTable {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.homeTableLeft {	
+	border-right: 1px solid gainsboro;
+	font-size: 25px;
+	width: 15%;
+	text-align: center;
+}
+
+.tdOuterDiv {
+	float: left;
+	width: 100%;
+	background-color: aliceblue;
+	border-radius: 20px;
+}
+
+.tdInnerDiv1 {
+	text-align: center;
+	font-size: 20px;
+	width: 85%;
+	background-color: aquamarine;
+	border-radius: 15px;
+	margin-top: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.tdInnerDiv2 {
+	text-align: center;
+	font-size: 20px;
+	width: 85%;
+	background-color: aquamarine;
+	border-radius: 15px;
+	margin-top: 3px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#menu {
+	display: flex;
+	height: 42px;
+	background: #B4B5B6;
+	width: 90%;
+	margin: 0 auto;
+	font-size: 16px;
+	justify-content: flex-end;
+}
+
+#mn_list {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	margin: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#menu ul li {
+	list-style: none;
+	float: left;
+	padding: 0px 10px;
+	height: 100%;
+	text-align: center;
+	text-decoration-color: black;
+	width: 10%;
+	line-height: 40px;
+}
+
+#menu ul ul {
+	display: none;
+	width: 300px;
+	height: 90%;
+	text-align: center;
+	justify-content: center;
+}
+
+#mn_list li:hover>ul {
+	display: flex;
+	justify-content: center;
+}
+
+#mn_list li li {
+	float: left;
+	list-style-type: none;
+	width: 100px;
+	height: 60%;
+	line-height: 40px;
+	font-weight: 500;
+	font-size: 6pt;
+}
+
+#mn_list .mn_type1 {
+	background: #F4C221;
+	border-radius: 8px;
+}
+
+#mn_list .mn_type2 {
+	background: #B4B5B6;
+	border-radius: 8px;
+}
+
+li a {
+	color: black;
+	font-weight: 900;
+	font-size: 8pt;
+}
+
+.lnb_list li a {
+	font-size: 15px;
+}
+
+/*사용량*/
+.secondBox {
+	width: 35%;
+	height: 99%;
+	display: flex;
+	flex-direction: column;
+}
+
+.thirdBox {
+	width: 65%;
+	height: 99%;
+	display: flex;
+	flex-direction: column;
+}
+
+.usageLeftTop {
+	width: 100%;
+	height: 100%;
+	/* background-color: #FFF35C; */
+	background-color: #47ACB4;
+	border-radius: 12px;
+	display: flex;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	flex-direction: column;
+}
+
+.usageDivInner {
+	margin-top: 25px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-bottom: 25px;
+	height: 100%;
+	/* width:100%; */
+}
+
+.usageDivTitle {
+	height: 8%;
+	font-size: 25px;
+	background-color: #47ACB4;
+	color: white;
+}
+
+.usageDivContent {
+	height: 92%;
+	border-radius: 15px;
+	background-color: white;
+}
+
+.usageDivContent_1 {
+	width: 100%;
+	height: 15%;
+	padding: 15px;
+}
+
+.usageDivContent_2 {
+	width: 100%;
+	height: 85%;
+	padding: 15px;
+}
+
+.usageSelect {
+	width: 100%;
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.usageTableDiv {
+	width: 100%;
+	height: 100%;
+}
+
+.usageTable {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+}
+
+.usageRight {
+	width: 100%;
+	height: 100%;
+	background-color: #47ACB4;
+	border-radius: 12px;
+	display: flex;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+
+.usageRightInner {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+}
+
+.chartBaox {
+	display: inline-block;
+	width: 97%;
+	height: 95%;
+	margin-top: 25px;
+}
+
+.usageHeaderTr {
+	background-color: lightblue;
+	font-weight: bold;
+}
+
+.usageEndTr {
+	background-color: deepskyblue;
+	font-weight: bold;
+	color: white;
+	font-size: 18px;
+}
+
+#usageDatePicker {
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+/* 
+리포트
+.reportDiv {
+	width: 50%;
+	height: 100%;
+	background-color: #FFF35C;
+	background-color: #47ACB4;
+	border-radius: 12px;
+	display: flex;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	flex-direction: column;
+}
+
+.reportDivInner {
+	margin-top: 25px;
+	margin-left: 25px;
+	margin-right: 25px;
+	margin-bottom: 25px;
+	height: 100%;
+}
+
+.reportTitle {
+	height: 8%;
+	font-size: 25px;
+	background-color: #47ACB4;
+	color: white;
+}
+
+.reportContent {
+	height: 92%;
+	border-radius: 15px;
+	background-color: white;
+}
+
+.reportSetup {
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+}
+
+.reportPrintContainer {
+	width: 100%;
+	height: 100%;
+	background-color: white;
+	padding : 1px;
+} */

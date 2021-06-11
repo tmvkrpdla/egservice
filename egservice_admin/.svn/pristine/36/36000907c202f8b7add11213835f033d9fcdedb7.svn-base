@@ -1,0 +1,192 @@
+package egservice.co.kr.admin.bld.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import egservice.co.kr.admin.common.Api;
+import egservice.co.kr.admin.common.ApiUtil;
+import egservice.co.kr.admin.common.SessionUtil;
+import egservice.co.kr.admin.common.StringUtil;
+
+@Controller
+@RequestMapping("/bld")
+public class BldUsageCompController {
+	
+	//	계측기간 사용량 비교 - 시간대별 비교
+	@RequestMapping("/compDay")
+	public String usageTime(HttpSession session, Model model, 
+			@RequestParam(value="mainMenu", defaultValue = "comp") String mainMenu
+			,@RequestParam(value="subMenu", defaultValue="day") String subMenu
+			, @RequestParam(value="dateTarget", defaultValue="") String dateTarget) throws Exception{
+		
+		
+		String moveUrl = "redirect:/";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+			if("4".equals(team_type)) {	//	건물
+				if("".equals(dateTarget)) {
+					StringUtil stringUtil = new StringUtil();
+					dateTarget = stringUtil.getFullYearYYYY() + "-" + stringUtil.getMonthMM() + "-" + stringUtil.getDayDD();
+				}
+				
+				//	2020-01-01	split 하면 배열로 
+				String[] dateArr = dateTarget.split("-"); 
+				
+				//	세션에서 meter_list 를 가져옴
+				HashMap siteInfoBldMap = SessionUtil.getSessionMap(session, "SITE_INFO_BLD");
+				
+				//	meter_list에서  계츠기 번호를 가져와 계측기간 사용량 호출
+				List meter_list = (List) siteInfoBldMap.get("meter_list");
+				
+				
+				//	계측기별 데이터를 담을 list
+				List usage_meter_day_list = new ArrayList();
+				
+				for(int i=0; i<meter_list.size();i++) {
+					HashMap meterMap = (HashMap) meter_list.get(i);
+					
+					String seq_meter = String.valueOf(meterMap.get("seq_meter")); 
+					
+					HashMap usageMeterDayMap = Api.getUsageMeterDay(seq_meter, dateArr[0], dateArr[1], dateArr[2]);
+					
+					//	차트용 및 테이블용 데이터로 가공
+					usageMeterDayMap = ApiUtil.dataComma(usageMeterDayMap);
+					
+					usageMeterDayMap.put("seq_meter", seq_meter);	//	미터번호
+					usageMeterDayMap.put("meter_name", meterMap.get("meter_name"));
+					usageMeterDayMap.put("descr", meterMap.get("descr"));	//	 건물관리자가 부여한 명칭 (예 : 전등기구, 에어컨 등)
+					
+					//System.out.println(usageMeterDayMap.toString());
+					
+					usage_meter_day_list.add(usageMeterDayMap);
+					
+				}
+				
+				moveUrl = "bld/comp/day";
+				
+				model.addAttribute("DATETARGET", dateTarget);
+				
+				model.addAttribute("USAGE_METER_DAY_LIST", usage_meter_day_list);
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("subMenu", subMenu);
+			}
+			
+		}
+		
+		return moveUrl;
+	}
+	
+	//	계측기간 사용량 비교 - 날짜별 분석
+	@RequestMapping("/compMonth")
+	public String usageDay(HttpSession session, Model model, 
+			@RequestParam(value="mainMenu", defaultValue = "comp") String mainMenu
+			,@RequestParam(value="subMenu", defaultValue="month") String subMenu
+			,@RequestParam(value="monthTarget", defaultValue = "") String monthTarget) throws Exception{
+		
+		
+		String moveUrl = "redirect:/";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+			if("4".equals(team_type)) {	//	건물
+				
+				if("".equals(monthTarget)) {
+					StringUtil stringUtil = new StringUtil();
+					monthTarget = stringUtil.getFullYearYYYY() + "-" + stringUtil.getMonthMM();
+				}
+				
+				//	2020-01-01	split 하면 배열로 
+				String[] dateArr = monthTarget.split("-"); 
+				
+				//	세션에서 meter_list 를 가져옴
+				HashMap siteInfoBldMap = SessionUtil.getSessionMap(session, "SITE_INFO_BLD");
+				
+				//	meter_list에서  계츠기 번호를 가져와 계측기간 사용량 호출
+				List meter_list = (List) siteInfoBldMap.get("meter_list");
+				
+				
+				//	계측기별 데이터를 담을 list
+				List usage_meter_month_list = new ArrayList();
+				
+				
+				
+				
+				
+				moveUrl = "bld/comp/month";
+				
+				
+				model.addAttribute("MONTHTARGET", monthTarget);		//	년도-월	2020-06
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("subMenu", subMenu);
+			}
+			
+		}
+		
+		return moveUrl;
+	}	
+	
+	//	계측기간 사용량 비교 - 요일별 분석
+	@RequestMapping("/compWeek")
+	public String usageWeek(HttpSession session, Model model, 
+			@RequestParam(value="mainMenu", defaultValue = "comp") String mainMenu
+			,@RequestParam(value="subMenu", defaultValue="week") String subMenu) throws Exception{
+		
+		
+		String moveUrl = "redirect:../";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+			if("4".equals(team_type)) {	//	건물
+				moveUrl = "bld/comp/week";
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("subMenu", subMenu);
+			}
+			
+		}
+		
+		return moveUrl;
+	}	
+	
+	//	계측기간 사용량 비교 - 월별 분석
+	@RequestMapping("/compYear")
+	public String usageMonth(HttpSession session, Model model, 
+			@RequestParam(value="mainMenu", defaultValue = "comp") String mainMenu
+			,@RequestParam(value="subMenu", defaultValue="year") String subMenu) throws Exception{
+		
+		
+		String moveUrl = "redirect:../";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+			if("4".equals(team_type)) {	//	건물
+				moveUrl = "bld/comp/year";
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("subMenu", subMenu);
+			}
+			
+		}
+		
+		return moveUrl;
+	}	
+	
+}

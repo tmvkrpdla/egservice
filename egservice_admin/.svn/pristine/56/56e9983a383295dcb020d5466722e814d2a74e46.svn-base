@@ -1,0 +1,510 @@
+/* @import url(../../kepco_safety/common/fonts/NanumGothic/NanumGothic.css); */
+
+
+/* html, body{
+	font-family: "Nanum Gothic";
+} */
+
+/*	===============================	*/
+
+.top-bar-font-size{
+	font-size: 17px;
+}
+
+.font-size-20{
+	font-size: 20px;
+}
+
+.font-size-17{
+	font-size: 17px;
+}
+
+/*	org	*/
+
+.org-table-bordered{
+    border: 1px solid #e3e6f0;
+}
+
+
+.org-table-bordered th,
+.org-table-bordered td {
+  border: 1px solid #e3e6f0;
+}
+
+.org-table-style{
+	text-align: center;
+	margin-top: 6px !important; 
+    margin-bottom: 6px !important;
+    width: 100%;
+}
+
+.org-table-title{
+	font-size: 17px;
+    font-weight: bold;
+    background-color: lightcyan;
+	
+}
+
+.org-table-title-usage{
+	/* text-align: left; */
+	font-size: 17px;
+    font-weight: bold;
+    background-color: lightcyan;
+}
+
+/*	===============================	*/
+/*	apt	*/
+/*공지사항 tile*/
+
+.aptNoticeTitle{
+	cursor:pointer;
+	
+}
+
+/*공지사항 상단 고정*/
+.aptNoticeListIsTop{
+	background-color: lightcyan;	
+}
+
+
+.aptNoticeViewButton{
+	padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    height: 100%;
+	text-align: right;
+}
+
+.aptNoticeViewButtonDiv1{
+	width: 50%;
+	height: 100%;
+	float : left;
+	text-align: right;
+}
+
+.aptNoticeViewButtonDiv2{
+	width: 50%;
+	height: 100%;
+	float : left;
+	text-align: right;
+}
+
+/*	===============================	*/
+/* bld */
+
+/* 홈 */
+
+.bldHomeCardBody {
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+.bldHomeCardBodyTitleOuter{
+	width:70%;
+	float:left;
+}
+
+.bldHomeCardBodyFasDiv{
+	text-align: right;
+}
+
+.bldHomeCardBodyFasUnset{
+	line-height: unset;
+}
+
+
+.bldHomeMeterListTdLeft{
+	text-align: center;
+	
+}
+
+.tdOuterDiv {
+	float: left;
+	width: 100%;
+	border-radius: 20px;
+}
+
+.tdInnerDiv1 {
+	text-align: center;
+    font-size: 20px;
+    width: 85%;
+    background-color: lightblue;
+    /* border-radius: 15px; */
+    margin-top: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid darkgray;
+}
+
+.tdInnerDiv2 {
+	text-align: center;
+    /* font-size: 20px; */
+    font-size: 17px;
+    width: 85%;
+    /* background-color: aquamarine; */
+    /* border-radius: 15px; */
+    margin-top: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid darkgray;
+}
+
+/* 계측기별 사용량 */
+
+.bldUsageSearchDiv{
+	font-size: 15px;
+	height: 100%;
+	display: table;
+	width : 100%;
+	text-align: center;
+}
+
+
+/* 조회-테이블 */
+.bldUsageTableFont{
+	font-size : 13px;
+	text-align: center;
+}
+
+.bldUsageDate{
+		
+	display: inline-block;
+  	/* font-weight: 400; */
+	  /* color: #858796; */
+  	text-align: right;
+  	vertical-align: middle;
+  	-webkit-user-select: none;
+  	-moz-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
+  	border: 1px solid transparent;
+	padding: 0.25rem 0.5rem;
+	padding-right : 10px;
+  	font-size: 0.875rem;
+  	line-height: 1.5;
+  	/* border-color: #4e73df; */
+	border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #6e707e;
+  	
+}
+
+.bldUsageDate:focus{
+	color: #6e707e;
+  	background-color: #fff;
+  	border-color: #bac8f3;
+  	outline: 0;
+  	box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+.bldUsageTableTitle{
+	
+}
+
+.bldUsageTableBot{
+	
+}
+
+.bldUsageRight{
+	text-align:right;
+}
+
+/* chart button */
+.bldUsageChartBotBtn{
+	text-align:right;
+}
+
+
+
+/* 공지 사항 */
+.bldNoticeListIsTop{
+	background-color: lightcyan;
+}
+
+.bldNoticeTitle{
+	cursor:pointer;
+}
+
+/* 알람 설정 */
+.bldAlarmText {
+	width: 80%;
+	float: left;
+	font-size: 15px;
+	height: 100%;
+	display: table;
+}
+
+span.bldAlarmTextTitle{
+	display: inline-block;
+	width : 40%;
+}
+
+
+.bldAlarmToggle{
+	
+	width: 20%;
+	float: right;
+	display: table;
+}
+
+.bldAlarmTextInput{
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: right;
+    width: 200px;
+}
+
+
+.bldNotiTypeSelect {
+    width: 120px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bldNotiHourSelect{
+    width: 75px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bldAlarmTextInput:focus{
+	color: #6e707e;
+  	background-color: #fff;
+  	border-color: #bac8f3;
+  	outline: 0;
+  	box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+.bldNotiHourSelect:focus{
+	color: #6e707e;
+  	background-color: #fff;
+  	border-color: #bac8f3;
+  	outline: 0;
+  	box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+.bldNotiTypeSelect:focus{
+	color: #6e707e;
+  	background-color: #fff;
+  	border-color: #bac8f3;
+  	outline: 0;
+  	box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+
+/*	===============================	*/
+/*	공	통	*/
+
+/* header */
+.page-heading-div{
+	width:100%;
+}
+
+.page-heading-title-div{
+	width: 70%; display: inline;
+}
+
+.page-heading-title{
+	font-size : 1.725rem;
+}
+
+.page-heading-report-div{
+	float: right; width: 30%; text-align: right;
+}
+
+.page-heading-report-helper{
+	height: 25px;display: inline-block;
+}
+
+.page-heading-navi-span{
+	font-weight: 100;
+    font-size: 11px;
+    
+    letter-spacing: -1px;
+}
+
+/* .page-content-navi{
+	font-size : 14px;
+} */
+
+/* 프로그레스바 */
+.wrap-loading { /*화면 전체를 어둡게 합니다.*/
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.2); /*not in ie */
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000',
+		endColorstr='#20000000'); /* ie */
+}
+
+.wrap-loading div { /*로딩 이미지*/
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-left: -21px;
+	margin-top: -21px;
+}
+
+.display-none { /*감추기*/
+	display: none;
+}
+
+/*	사이드 바	*/
+.sidebar-a-link{
+	display: inline-block;
+    height: 200px;
+    width: 200px;
+	background-image: url(../../images/C_01.jpg);
+	background-repeat : no-repeat;
+	background-size: 100px;
+}
+/* sub menu font color */
+.sidebar .nav-item .collapse .collapse-inner .collapse-item,
+.sidebar .nav-item .collapsing .collapse-inner .collapse-item {
+ 
+  color: rgba(255, 255, 255, 0.8);
+  
+}
+
+div.py-2.collapse-inner.rounded{
+	 background-color:  #4e73df;
+}
+
+/* sub menu active */
+.sidebar .nav-item .collapse .collapse-inner .collapse-item.active, .sidebar .nav-item .collapsing .collapse-inner .collapse-item.active {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* sub menu hover */
+.sidebar .nav-item .collapse .collapse-inner .collapse-item:hover, .sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover {
+	color: #fff;
+	font-weight: 700;
+    background-color: #224abe;
+}
+
+
+/*	페이징	*/
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+	margin: 0;
+	white-space: nowrap;
+	justify-content: center;
+}
+
+
+
+.text-up-300 {
+	color: red !important;
+}
+
+.text-down-300{
+	color: green !important;
+}
+
+.text-equal-300{
+	color: #dddfeb !important;
+}
+
+
+
+
+/* 데이트 피커 */
+		/* date-picker */
+.custom-date {
+  display: inline-block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6e707e;
+  vertical-align: middle;
+  background-color: #fff;
+  border: 1px solid #d1d3e2;
+  border-radius: 0.35rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  text-align: right;
+}
+
+.custom-date:focus {
+  border-color: #bac8f3;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+.custom-date:focus::-ms-value {
+  color: #6e707e;
+  background-color: #fff;
+}
+
+.custom-date[multiple], .custom-date[size]:not([size="1"]) {
+  height: auto;
+  padding-right: 0.75rem;
+  background-image: none;
+}
+
+.custom-date:disabled {
+  color: #858796;
+  background-color: #eaecf4;
+}
+
+.custom-date::-ms-expand {
+  display: none;
+}
+
+.custom-date-sm {
+  height: calc(1.5em + 0.5rem + 2px);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.custom-select-sm{
+	height: calc(1.5em + 0.5rem + 2px);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  font-size: 0.875rem;
+	
+}
+
+/* 페이지별 text */
+.lightbulb-img-style{
+	width:20px;
+	float:left;
+}
+
+.lightbulb-text-style{
+	width:95%;
+	float:left;
+	padding-left:5px;
+}
+/*	===============================	*/

@@ -1,0 +1,210 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>home</title>
+	<jsp:include page="../common/common.jsp"></jsp:include>	
+	
+	
+	<c:if test="${not empty sessionScope}">
+	<link rel="stylesheet" type="text/css" href="<c:url value='../resources/apt/css/aptCommon.css'/>">
+	<script type="text/javascript" src="<c:url value='../resources/apt/js/aptCommon.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='../resources/apt/js/aptHome.js'/>"></script>
+	</c:if>
+	
+	<style>
+		/* div{
+			    border: 1px solid red;
+		}  */
+	</style>
+</head>
+	
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+ <%-- session이 없는 경우 --%>
+	<c:if test="${empty sessionScope.ADMIN}">
+		<jsp:include page="../common/emptySession.jsp"></jsp:include>		
+	</c:if>
+
+	
+	<c:if test="${not empty sessionScope.ADMIN}">
+	<div class= 'mainOuter'>
+    <!-- main	menu -->	 
+		<div class="mainWrapper">
+		<jsp:include page="../common/timeForm.jsp"></jsp:include>
+	    <jsp:include page="../apt/aptMenu.jsp"></jsp:include>        
+			<div class="subWrapper">
+	    		<!-- 왼쪽 -->
+	    		<div class="firstBox">	
+	    			<!-- 왼쪽 상단 1번 박스 -->	
+	    			<div class='toInnerDiv_1'>	
+	    				<!-- 사용량 -->
+						<div class="UsageInfoA_2">
+							<div class="homeTextTitle">사용량</div>
+							<div class="usage" style="background-color: rgb(105,188,172)">
+	                            <div class="left">
+									<span>오늘 <br> 사용량</span>
+	                            </div>
+	                            <div class="right2" style="background-color: rgb(85,145,137);">
+	                             	<span id="text1"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(60,179,113);">
+	                            <div class="left" >
+	                             	<span>이번달 <br>사용량</span>
+	                            </div>
+	                            <div class="right2" style="background-color: rgb(143,153,25);">
+	                             	<span id="text2"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(246,118,25)">
+	                            <div class="left">
+	                             	<span>이번년도 <br>사용량</span>
+	                            </div>
+	                            <div class="right2" style="background-color: #FF9900;">
+	                             	<span id="text3"></span>
+	                            </div>
+	                        </div>
+						</div>
+						<!-- 작년 대비 -->
+						<div class="UsageInfoA_2">
+							<div class="homeTextTitle">작년 대비</div>
+							<div class="usage" style="background-color: rgb(105,188,172)">
+	                            <div class="topLeft">
+	                             	<span id="text4"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(85,145,137);">
+	                             	<span id="text5"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(60,179,113)">
+	                            <div class="topLeft">
+	                             	<span id="text6"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(143,153,25);">
+	                             	<span id="text7"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(246,118,25)">
+	                            <div class="topLeft" >
+	                             	<span id="text8"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: #FF9900;">
+	                             	<span id="text9"></span>
+	                            </div>
+	                        </div>
+						</div>
+						
+						<!-- 온실가스 -->
+						<div class="UsageInfoA_2">
+							<div class="homeTextTitle">온실 가스</div>
+							<div class="usage" style="background-color: rgb(105,188,172)">
+	                            <div class="topLeft">
+									<span id="text10"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(85,145,137);">
+	                             	<span id="text11"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(60,179,113)">
+	                            <div class="topLeft">
+	                             	<span id="text12"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(143,153,25);">
+	                             	<span id="text13"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(246,118,25)">
+	                            <div class="topLeft" >
+	                             	<span id="text14"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: #FF9900;">
+	                             	<span id="text15"></span>
+	                            </div>
+	                        </div>
+						</div>
+	                       
+					</div>
+					
+					<div class='homeInfoOuterDiv'><!-- 왼쪽 2번 박스 -->
+						<div class='homeInfoInnerDiv'>
+						
+							<div class="homeInfo" id="homeInfo">
+								<table class="homeInfoTable">
+									<tr>
+										<td class='homeTdTitle'>층수</td>
+										<td class='homeTdContents'><span id="infoFloor"></span></td>
+									</tr>
+									<tr>
+										<td class='homeTdTitle'>면적</td>
+										<td class='homeTdContents'><span id="infoArea"></span></td>
+									</tr>
+									<tr>
+										<td class='homeTdTitle'>완공일</td>
+										<td class='homeTdContents'><span id="infoBuilt"></span></td>
+									</tr>
+									<tr>
+										<td class='homeTdTitle'>주소</td>
+										<td class='homeTdContents'><span id="infoAddr"></span></td>
+									</tr>
+									<tr>
+										<td class='homeTdTitle'>홈페이지</td>
+										<td class='homeTdContents'><span id="infoHomePage"></span></td>
+									</tr>
+								</table>
+							</div>
+		
+						</div>
+		                   
+		                <div class='bldAdminTitleOuterDiv'>
+		                	<div class='bldAdminTitleDiv'> 
+		                		<div class='bldAdminTitleTextDiv'>
+		                			건물 관리자
+		                		</div>
+		                	</div>
+		                </div>   
+		                      
+						
+						
+						<div class='bldAdminTableOuterDiv'>
+							<div class='bldAdmin'>
+								<div class='bldAdminTitle'>
+								
+									<div class='bldAdminTableDiv' id='bldAdminTableDiv'>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+	                    
+					</div><!-- 왼쪽 하단 -->
+					  
+	    		</div><!-- 왼쪽  끝 -->
+	            
+	            <!-- 오른쪽 -->
+	            <div class="firstBox">	
+	            	<div class="toInnerDiv_4">
+	            		<div class="homeTableDiv" id="homeTableDiv">
+	            			
+		            	
+	            		</div>
+		            	
+	            	</div>
+	            </div>	
+	    		  
+			</div>
+		</div>
+	</div>
+    </c:if>
+    
+  
+    
+
+
+</body>
+</html>

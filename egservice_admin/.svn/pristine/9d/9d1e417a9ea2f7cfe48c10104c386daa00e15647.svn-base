@@ -1,0 +1,289 @@
+body {
+	margin: 0;
+	padding: 0;
+	
+}
+/* .div {
+	border: 1px solid red;
+} */
+
+/* .printPage {
+	border: 1px solid red;
+}  */
+
+* {
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+
+.printPage {
+	width: 21cm;
+	margin: auto;
+
+	padding-top: 30px;
+	padding-bottom: 30px;
+
+	padding-left: 25px;
+	padding-right: 25px;;
+	border: 1px solid black;
+}
+
+@page {
+	size: A4;
+	margin: 0;
+}
+
+@media print {
+	html, body {
+		width: 210mm;
+		
+	}
+	.printPage {
+		padding-left: 25px;
+		padding-right: 25px;;
+		padding-top:20px;
+		padding-bottom : 20px;
+		border: initial;
+		width: initial;
+		min-height: initial;
+		box-shadow: initial;
+		background: initial;
+	}
+}
+/* 밑에서부터 복사*/
+
+/* 1 */
+.printHeaderDiv {
+	width: 100%;
+	height: 70px;
+	/* height : 30px; */
+}
+
+.headerImgGcGu {
+	width: 10%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+
+.imgGcGu {
+	width: 90%;
+	height: 100%;
+	margin: 0px auto;
+}
+
+.headerBldName {
+	width: 80%;
+	height: 100%;
+	float: left;
+}
+
+.headerImgEgservice {
+	width: 10%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+
+.imgEgservice {
+	width: 90%;
+	height: 100%;
+	margin: 0px auto;
+}
+
+.headerBldTitle {
+	width: 100%;
+	height: 60%;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 5px;
+}
+
+.headerBldCurr {
+	width: 100%;
+	height: 40%;
+	text-align: center;
+	font-size: 13px;
+	padding-top: 2px;
+}
+
+/* 2 */
+.printContentBldInfo {
+	width: 100%;
+	height: 150px;
+}
+
+.printBldInfo {
+	width: 33.33%;
+	float: left;
+	height: 100%;
+	padding: 5px;
+}
+
+.printBldInfoTable {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+.printBldInfoTable tr {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.printBldInfoTable td {
+	border: 1px solid black;
+}
+
+.printBldInfoTitle {
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+}
+
+.printBldInfoSiteName {
+	font-size: 12px;
+	text-align: center;
+}
+
+.printBldInfoScale {
+	font-size: 12px;
+	text-align: center;
+}
+
+.printBldUsage {
+	width: 33.33%;
+	float: left;
+	height: 100%;
+	padding: 5px;
+}
+
+.printBldUsageTable {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+.printBldUsageTable tr {
+	border: 1px solid black;
+}
+
+.printBldUsageTable td {
+	border: 1px solid black;
+}
+
+.printBldUsageTitle {
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+}
+
+.printBldUsageTd1 {
+	font-size: 12px;
+	width: 50%;
+	text-align: center;
+}
+
+.printBldUsageTd2 {
+	font-size: 12px;
+	width: 50%;
+	padding-right: 7px;
+	text-align: right;
+}
+
+.printBldEffect {
+	width: 33.33%;
+	float: left;
+	height: 100%;
+	padding: 5px;
+}
+
+.printBldEnergyTable {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	border: 1px solid black;
+}
+
+.printBldEnergyTable tr {
+	border: 1px solid black;
+}
+
+.printBldEnergyTable td {
+	border: 1px solid black;
+}
+
+.printBldEnergyTitle {
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+}
+
+.printBldEnergyTd1 {
+	font-size: 12px;
+	width: 50%;
+	text-align: center;
+}
+
+.printBldEnergyTd2 {
+	font-size: 12px;
+	width: 50%;
+	padding-right: 7px;
+	text-align: right;
+}
+
+/* 3 */
+.printContentUsage {
+	width: 100%;
+	/* height: 855px; */
+}
+
+.printContentUsageTitle {
+	width: 100%;
+	height: 25px;
+	padding-top: 5px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.printContentChart {
+	width: 100%;
+	height: 330px;
+}
+
+.printChart {
+	width: 100%;
+	height: 100%;
+}
+/*	사용량 관련 테이블 사이즈 조정*/
+.printContentTableOuter {
+	width: 100%;
+	/* height: 500px; */
+}
+
+.printContentTable {
+	width: 100%;
+	height: 100%;
+	border-collapse: collapse;
+	border: 1px solid black;
+	font-size : 10px;
+}
+
+.printContentTable tr {
+	border: 1px solid black;
+}
+
+.printContentTable td {
+	border: 1px solid black;
+	height: 35px;
+	text-align: center;
+}
+
+.printContentTableFirstTr {
+	
+    font-weight: bold;
+}

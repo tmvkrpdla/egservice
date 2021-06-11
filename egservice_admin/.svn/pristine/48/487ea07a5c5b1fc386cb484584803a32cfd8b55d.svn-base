@@ -1,0 +1,92 @@
+$(document).ready(function(){
+	getMeterList(_meterList);
+	
+	function getMeterList(meter_list){
+		var meterArr = {};
+		for(var i=0; i<meter_list.length; i++){
+			var arr = meter_list[i];
+			
+			if(!meterArr.hasOwnProperty(arr.floor_installed.toString())){
+				
+				meterArr[arr.floor_installed.toString()] = 1;
+				
+			}else{
+				var meterArrData = meterArr[arr.floor_installed.toString()];
+				meterArr[arr.floor_installed.toString()] = ++meterArrData;
+				
+			}
+			
+		}//
+		
+		var keys = Object.keys(meterArr);
+		var maxTd = 0;	//	계측기 갯수를 구하고	td의 갯수를 구한다
+		
+		for(var i=0; i<keys.length; i++){
+			var temp = meterArr[keys[i]];
+			if(temp>maxTd){
+				maxTdkeys = keys[i];
+				maxTd = temp;
+			}
+			
+		}//
+		
+		//	테이블 td 넓이 설정
+		var tdWidth = 100/maxTd;
+		
+		var tableTagStart = "<table class='table table-bordered table-hover dataTable'>";
+		var contentTr="";
+		var tableTagEnd = "</table>";
+		
+		//	현재 플로어를 지정할 변수
+		var _floor = '';	//	for문의 제어하는 변수		td태그를 그림
+		for(var i= meter_list.length-1; i>=0; i--){
+			//console.log(i);
+			var arr = meter_list[i];
+			
+			if(i == meter_list.length-1){	//	처음 시작
+				
+				_floor = arr.floor_installed;
+				contentTr += "<tr><td class='bldHomeMeterListTdLeft' style='vertical-align: middle;'>" +  checkFloor(arr.floor_installed) + "</td><td>";
+				contentTr += "<div class=tdOuterDiv style=width:" +tdWidth+ "%>";
+				contentTr += "<div class=tdInnerDiv1>" + arr.meter_name + "</div>" ;	
+				contentTr += "<div class=tdInnerDiv2>" + arr.descr + "</div>";	//	계측기
+				contentTr += "<div class=tdInnerDiv2>" + arr.mid + "</div>";
+				contentTr += "</div>";
+			}else{
+				if(_floor == arr.floor_installed){	//	층이 같다면	현재 층을 표시 하지 않음
+					contentTr += "<div class=tdOuterDiv style=width:" +tdWidth+ "%>";
+					contentTr += "<div class=tdInnerDiv1>" + arr.meter_name + "</div>" ;	
+					contentTr += "<div class=tdInnerDiv2>" + arr.descr + "</div>"; //	계측기
+					contentTr += "<div class=tdInnerDiv2>" + arr.mid + "</div>";
+					contentTr += "</div>";
+				}else{
+					_floor = arr.floor_installed;	//	층이 다르다면 층을 _floor 변수에 저장함
+					contentTr += "</td> <tr><td class='bldHomeMeterListTdLeft' style='vertical-align: middle;'>" +  checkFloor(arr.floor_installed) + "</td><td>";
+					contentTr += "<div class=tdOuterDiv style=width:" +tdWidth+ "%>";
+					contentTr += "<div class=tdInnerDiv1>" + arr.meter_name + "</div>" ;	
+					contentTr += "<div class=tdInnerDiv2>" + arr.descr + "</div>"; //	계측기
+					contentTr += "<div class=tdInnerDiv2>" + arr.mid + "</div>";
+					contentTr += "</div>";
+				}
+				
+			}
+			
+		}//	for end
+		
+		$("#bldHomeMeterListTableDiv").html(tableTagStart+contentTr + tableTagEnd);
+	}
+	
+	
+	function checkFloor(floor_installed){
+		var _floor = floor_installed;
+		if(_floor<0){
+			_floor = "지하 " + Math.abs(_floor) + " 층"
+		}else{
+			_floor = "지상 " + _floor + " 층"
+		}
+		
+		return _floor;
+	}
+	
+
+});

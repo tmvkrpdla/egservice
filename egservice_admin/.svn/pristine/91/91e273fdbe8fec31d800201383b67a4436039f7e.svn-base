@@ -1,0 +1,168 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>구청 - 홈</title>
+	
+	<jsp:include page="../common/common.jsp"></jsp:include>
+	
+	<link rel="stylesheet" type="text/css" href="<c:url value='../resources/org/css/orgCommon.css'/>">
+	<script type="text/javascript" src="<c:url value='../resources/org/js/orgDashboard.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='../resources/org/js/orgCommon.js'/>"></script>
+	<style>
+		/* div{
+			    border: 1px solid black;
+		} */
+	</style>
+    
+
+		
+</head>
+
+
+<body oncontextmenu='return false' onselectstart='return false' ondragstart='return false'>
+	<c:if test="${empty sessionScope.ADMIN}">
+		<jsp:include page="../common/emptySession.jsp"></jsp:include>
+    </c:if>
+    
+    <c:if test="${not empty sessionScope.ADMIN}">
+    <div class= 'mainOuter'>
+	    <div class="mainWrapper">
+	       <jsp:include page="../common/timeForm.jsp"></jsp:include>
+	       
+	        <div class="subWrapper">
+	        	<!-- 왼쪽 박스 -->
+	        	<div class="firstBox">
+	        		<!-- 왼쪽 상단 박스 -->	
+					<div class='toInnerDiv_1'>
+					<!-- 사용량 -->
+						<div class="UsageInfoA_2">
+							<div class="homeTextTitle">사용량</div>
+							<div class="usage" style="background-color: rgb(105,188,172)">
+	                            <div class="left">
+									<span>오늘 <br> 사용량</span>
+	                            </div>
+	                            <div class="right2" style="background-color: rgb(85,145,137);">
+	                             	<span id="text1"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(60,179,113)">
+	                            <div class="left" >
+	                             	<span>이번달 <br>사용량</span>
+	                            </div>
+	                            <div class="right2" style="background-color: rgb(143,153,25);">
+	                             	<span id="text2"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(246,118,25)">
+	                            <div class="left">
+	                             	<span>이번년도 <br>사용량</span>
+	                            </div>
+	                            <div class="right2" style="background-color: #FF9900;">
+	                             	<span id="text3"></span>
+	                            </div>
+	                        </div>
+						</div>
+						<!-- 작년 대비 -->
+						<div class="UsageInfoA_2">
+							<div class="homeTextTitle">작년 대비</div>
+							<div class="usage" style="background-color: rgb(105,188,172)">
+	                            <div class="topLeft">
+	                             	<span id="text4"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(85,145,137);">
+	                             	<span id="text5"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(60,179,113)">
+	                            <div class="topLeft">
+	                             	<span id="text6"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(143,153,25);">
+	                             	<span id="text7"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(246,118,25)">
+	                            <div class="topLeft" >
+	                             	<span id="text8"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: #FF9900;">
+	                             	<span id="text9"></span>
+	                            </div>
+	                        </div>
+						</div>
+						
+						<!-- 온실가스 -->
+						<div class="UsageInfoA_2">
+							<div class="homeTextTitle">온실 가스</div>
+							<div class="usage" style="background-color: rgb(105,188,172)">
+	                            <div class="topLeft">
+									<span id="text10"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(85,145,137);">
+	                             	<span id="text11"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(60,179,113)">
+	                            <div class="topLeft">
+	                             	<span id="text12"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: rgb(143,153,25);">
+	                             	<span id="text13"></span>
+	                            </div>
+	                        </div>
+	                        <div class="usage" style="background-color: rgb(246,118,25)">
+	                            <div class="topLeft" >
+	                             	<span id="text14"></span>
+	                            </div>
+	                            <div class="topRight" style="background-color: #FF9900;">
+	                             	<span id="text15"></span>
+	                            </div>
+	                        </div>
+						</div>
+	               
+					
+					
+					</div><!-- 왼쪽 상단 박스 end -->		
+					<!-- 왼쪽 하단 박스 -->
+					<div class='toInnerDiv_5'>
+						<div class='divContent3'>
+							<div class="divContent3TitleDiv">
+								<div class='homeLeftBotTitleOuter'>
+									<div class='homeLeftBotTitleInner'>금천구 실시간 현황</div>
+								</div>
+							</div>
+							<div class="divContent3TableDiv" id="divContent3TableDiv">
+							</div>
+						</div>
+					</div><!-- 왼쪽 하단 박스 end -->
+				</div>	<!-- 왼쪽 박스 end -->
+				
+				<!-- 오른쪽 박스 -->
+				<div class="firstBox">	
+					<div class='homeMapDivOuter'>
+						<div class='homeMapDivInner'>
+							<div id="map" class='map'></div>
+						</div>
+					</div>
+				</div><!-- 오른쪽 박스 end -->
+				
+				
+	        </div>
+	    </div><!-- subWrapper end  -->
+    </div>
+   </c:if>
+   
+
+<script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7X1qdWEkxShDHppcouSnLq9IpjoMpiG8&callback=initMap">
+</script>  
+</body>
+
+</html>

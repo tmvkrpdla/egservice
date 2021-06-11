@@ -1,0 +1,120 @@
+package egservice.co.kr.admin.bld.controller;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import egservice.co.kr.admin.common.SessionUtil;
+
+@Controller
+@RequestMapping("/bld")
+public class BldMeterController {
+
+	//	계측기별 사용량 분석 - 시간대별 분석
+	@RequestMapping("/meterTime")
+	public String meterTime(HttpSession session, Model model, 
+			@RequestParam(value = "mainMenu", defaultValue = "meter" ) String mainMenu
+			,@RequestParam(value = "subMenu" , defaultValue= "meter-time" ) String subMenu) throws Exception{
+		
+		
+		String moveUrl = "redirect:/";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+			if("4".equals(team_type)) {	//	건물
+				moveUrl = "bld/meter/time";
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("subMenu", subMenu);
+			}
+			
+		}
+		
+		return moveUrl;
+	}
+	
+	//	계측기별 사용량 분석 - 시간대별 사용량 다중분석
+	@RequestMapping("/meterCompTime")
+	public String meterCompTime(HttpSession session,Model model,
+	  @RequestParam(value = "mainMenu", defaultValue = "meter" ) String mainMenu
+	  ,@RequestParam(value = "subMenu", defaultValue = "meter-comptime" ) String subMenu) throws Exception{
+	
+	
+		String moveUrl = "redirect:/";
+	 
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+	 
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+	  
+			if("4".equals(team_type)) { // 건물 
+				moveUrl = "bld/meter/compTime";
+	  
+				model.addAttribute("mainMenu", mainMenu); 
+				model.addAttribute("subMenu",subMenu); 
+	  	
+			}
+	
+		}
+	
+		return moveUrl; 
+	}
+	 	
+	
+	
+	//	계측기별 사용량 분석 - 날짜별 분석
+	@RequestMapping("/meterWeek")
+	public String meterWeek(HttpSession session, Model model, 
+			@RequestParam(value="mainMenu", defaultValue = "meter") String mainMenu
+			,@RequestParam(value="subMenu", defaultValue = "meter-week") String subMenu) throws Exception{
+		
+		
+		String moveUrl = "redirect:../";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+			if("4".equals(team_type)) {	//	건물
+				moveUrl = "bld/meter/week";
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("subMenu", subMenu);
+			}
+			
+		}
+		
+		return moveUrl;
+	}	
+	
+	//	계측기별 사용량 분석 - 요일별 분석
+	@RequestMapping("/meterMonth")
+	public String meterMonth(HttpSession session, Model model, 
+			@RequestParam(value="mainMenu", defaultValue = "meter") String mainMenu
+			,@RequestParam(value="subMenu", defaultValue = "meter-month") String subMenu) throws Exception{
+		
+		
+		String moveUrl = "redire ct:../";
+		
+		if(!SessionUtil.isNull(session, "ADMIN")) {
+			
+			String team_type = SessionUtil.getString(session, "ADMIN", "team_type");
+
+			if("4".equals(team_type)) {	//	건물
+				moveUrl = "bld/meter/month";
+				
+				model.addAttribute("mainMenu", mainMenu);
+				model.addAttribute("subMenu", subMenu);
+			}
+			
+		}
+		
+		return moveUrl;
+	}	
+	
+	
+}
